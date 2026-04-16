@@ -1,5 +1,5 @@
 // 1. Initialize the Map
-mapboxgl.accessToken = 'TOKEN'; // Replace with your Mapbox token
+mapboxgl.accessToken = 'MAPBOX_TOKEN_PLACEHOLDER'
 const map = new mapboxgl.Map({
     container: 'map-container', // Matches the ID in index.html
     style: 'mapbox://styles/mapbox/standard',
@@ -618,6 +618,17 @@ const rawDiaryData = [
     "lat": 40.73215319,
     "long": -74.00193214,
     "tags": "ifc, charlotte, logan"
+  },
+  {
+    "watchdate": "2026-04-15",
+    "name": "The Taking of Pelham One Two Three",
+    "letterboxdlink": "https://letterboxd.com/film/the-taking-of-pelham-1-2-3/",
+    "rating": 5,
+    "theatername": "bam",
+    "theatername": "bam",
+    "lat": 40.68659391,
+    "long": -73.97767931,
+    "tags": "bam, adrian"
   }
 ];
 
