@@ -107,6 +107,55 @@ body {
     background: #e8e8e8;
 }
 
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    /* Move header to top center with more space */
+    #header {
+        top: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        max-width: 90vw;
+        padding: 8px 15px;
+    }
+    
+    #header h1 {
+        font-size: 20px;
+    }
+    
+    #header .subtitle {
+        font-size: 12px;
+    }
+    
+    #header .cta {
+        font-size: 10px;
+    }
+    
+    /* Move filter panel below header */
+    #filter-panel {
+        top: auto;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        max-width: 90vw;
+        max-height: 40vh;
+        overflow-y: auto;
+    }
+    
+    #filter-buttons {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 1024px) and (min-width: 769px) {
+    /* On tablets, move filter panel to right side */
+    #filter-panel {
+        top: 10px;
+        left: auto;
+        right: 10px;
+        max-width: 250px;
+    }
+}
+
 /* Make the map fill the entire browser window */
 #map-container {
     position: absolute;
