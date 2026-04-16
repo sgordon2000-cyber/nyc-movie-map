@@ -9,7 +9,7 @@ const map = new mapboxgl.Map({
 
 // Filter state and configuration
 const filterConfig = {
-    people: ['Jen', 'Seneca', 'WJ', 'Avery', 'Charlotte', 'Jackson', 'Adi', 'Julia', 'Emma', 'Caroline', 'Adam', 'Ben', 'Asja', 'Bridget', 'Livi', 'Adrian', 'Sleep', 'Cry'],
+    people: ['Jen', 'Seneca', 'WJ', 'Avery', 'Charlotte', 'Jackson', 'Adi', 'Julia', 'Emma', 'Caroline', 'Adam', 'Ben', 'Asja', 'Bridget', 'Livi', 'Adrian', 'zzz', 'teary'],
     selected: []
 };
 
