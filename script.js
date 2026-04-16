@@ -9,7 +9,7 @@ const map = new mapboxgl.Map({
 
 // Filter state and configuration
 const filterConfig = {
-    people: ['Jen', 'Seneca', 'WJ', 'Avery', 'Charlotte', 'Jackson', 'Adi', 'Julia', 'Emma', 'Caroline', 'Adam', 'Ben', 'Asja', 'Bridget', 'Livi', 'Adrian'],
+    people: ['Jen', 'Seneca', 'WJ', 'Avery', 'Charlotte', 'Jackson', 'Adi', 'Julia', 'Emma', 'Caroline', 'Adam', 'Ben', 'Asja', 'Bridget', 'Livi', 'Adrian', 'Sleep', 'Cry'],
     selected: []
 };
 
@@ -17,6 +17,19 @@ let currentMarkers = []; // Track markers to clear them when filtering
 
 // Convert theater name to URL-friendly tag
 function getTheaterTag(theaterName) {
+    const overrides = {
+        "l'alliance": 'l-alliance',
+        "paris theatre": 'paris',
+        "hunter college": 'hunter',
+        "nyu wagner": 'wagner',
+        "e-flux": 'eflux'
+    };
+
+    const normalized = theaterName.toLowerCase().trim();
+    if (overrides[normalized]) {
+        return overrides[normalized];
+    }
+
     return theaterName
         .toLowerCase()
         .replace(/'/g, '') // Remove apostrophes
@@ -59,14 +72,20 @@ function initializeFilters() {
     });
 }
 
-// Check if a movie's tags contain any of the selected people
+// Check if a movie's tags contain any of the selected people or mood filters
 function hasSelectedPeople(tags) {
     if (filterConfig.selected.length === 0) return true; // Show all if no filter selected
     
     const tagArray = tags.split(',').map(tag => tag.trim().toLowerCase());
-    return filterConfig.selected.some(person => 
-        tagArray.includes(person.toLowerCase())
-    );
+    const tagMapping = {
+        sleep: 'zzz',
+        cry: 'teary'
+    };
+
+    return filterConfig.selected.some(selection => {
+        const filterTag = tagMapping[selection.toLowerCase()] || selection.toLowerCase();
+        return tagArray.includes(filterTag);
+    });
 }
 
 // Update the map based on current filters
