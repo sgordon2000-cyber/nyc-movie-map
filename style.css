@@ -26,6 +26,21 @@ body {
     color: #333;
 }
 
+#header .subtitle {
+    margin: 5px 0 0 0;
+    font-size: 14px;
+    font-style: italic;
+    color: #666;
+    font-weight: 400;
+}
+
+#header .cta {
+    margin: 5px 0 0 0;
+    font-size: 12px;
+    color: #888;
+    font-weight: 400;
+}
+
 /* Filter Panel Styles */
 #filter-panel {
     position: absolute;
