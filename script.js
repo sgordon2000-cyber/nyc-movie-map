@@ -1,5 +1,5 @@
 // 1. Initialize the Map
-mapboxgl.accessToken = 'MAPBOX_TOKEN_PLACEHOLDER'
+mapboxgl.accessToken = 'pk.eyJ1Ijoic2dvcmRvbjIwMDAiLCJhIjoiY21uaTJ1Znh4MDk1NTJvb2Qwa2w0M3NtZCJ9.WFJWxl9ydMDWvehX6GGL7Q'
 const map = new mapboxgl.Map({
     container: 'map-container', // Matches the ID in index.html
     style: 'mapbox://styles/mapbox/standard',
