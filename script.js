@@ -1,19 +1,28 @@
 // 1. Initialize the Map
-mapboxgl.accessToken = 'pk.eyJ1Ijoic2dvcmRvbjIwMDAiLCJhIjoiY21uaTJ1Znh4MDk1NTJvb2Qwa2w0M3NtZCJ9.WFJWxl9ydMDWvehX6GGL7Q'
+mapboxgl.accessToken = 'pk.eyJ1Ijoic2dvcmRvbjIwMDAiLCJhIjoiY21vMjBkOGg4MHAzeDJvb3RvNG52eWM3cCJ9.Fbqhw1rZO3iPwNy0QubURA'
 const map = new mapboxgl.Map({
     container: 'map-container', // Matches the ID in index.html
-    style: 'mapbox://styles/mapbox/standard',
+    style: 'mapbox://styles/mapbox/light-v11',
     center: [-73.98824, 40.73617], // Centered on NYC
     zoom: 11
 });
 
 // Filter state and configuration
 const filterConfig = {
-    people: ['Jen', 'Seneca', 'WJ', 'Avery', 'Charlotte', 'Jackson', 'Adi', 'Julia', 'Emma', 'Caroline', 'Adam', 'Ben', 'Asja', 'Bridget', 'Livi'],
+    people: ['Jen', 'Seneca', 'WJ', 'Avery', 'Charlotte', 'Jackson', 'Adi', 'Julia', 'Emma', 'Caroline', 'Adam', 'Ben', 'Asja', 'Bridget', 'Livi', 'Adrian'],
     selected: []
 };
 
 let currentMarkers = []; // Track markers to clear them when filtering
+
+// Convert theater name to URL-friendly tag
+function getTheaterTag(theaterName) {
+    return theaterName
+        .toLowerCase()
+        .replace(/'/g, '') // Remove apostrophes
+        .replace(/\s+/g, '-') // Replace spaces with hyphens
+        .replace(/-+/g, '-'); // Replace multiple hyphens with single
+}
 
 // Initialize filter UI
 function initializeFilters() {
@@ -66,11 +75,11 @@ function updateMap() {
     currentMarkers.forEach(marker => marker.remove());
     currentMarkers = [];
     
-    // Regroup and filter data
+    // Regroup and filter data (exclude JFK)
     const groupedTheaters = {};
     
     rawDiaryData.forEach(entry => {
-        if (!entry.theatername || !entry.lat) return;
+        if (!entry.theatername || !entry.lat || entry.theatername === 'JFK') return;
         
         // Only include movies that match the filter (or all if no filter)
         if (!hasSelectedPeople(entry.tags)) return;
@@ -92,7 +101,9 @@ function updateMap() {
 
         const ratedMovies = movies.filter(m => m.rating !== "" && m.rating !== null && !isNaN(m.rating));
 
-        let popupHTML = `<h3>${theaterName}</h3>`;
+        const theaterTag = getTheaterTag(theaterName);
+        const theaterUrl = `https://letterboxd.com/seth_gordon/tag/${theaterTag}/films/`;
+        let popupHTML = `<h3><a href="${theaterUrl}" target="_blank" style="color: inherit; text-decoration: none;">${theaterName}</a> <span style="font-size: 12px; color: #666; font-weight: normal;">(${movies.length} ${movies.length === 1 ? 'movie' : 'movies'})</span></h3>`;
         let markerColor = '#808080';
 
         if (ratedMovies.length > 0) {
