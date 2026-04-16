@@ -130,19 +130,37 @@ body {
         font-size: 10px;
     }
     
-    /* Move filter panel below header */
+    /* Compact filter panel at bottom */
     #filter-panel {
         top: auto;
         bottom: 10px;
         left: 50%;
         transform: translateX(-50%);
-        max-width: 90vw;
-        max-height: 40vh;
-        overflow-y: auto;
+        max-width: 95vw;
+        max-height: 25vh;
+        padding: 10px;
+        background: rgba(255, 255, 255, 0.95);
+    }
+    
+    #filter-panel h3 {
+        margin: 0 0 8px 0;
+        font-size: 12px;
     }
     
     #filter-buttons {
-        justify-content: center;
+        gap: 6px;
+        margin-bottom: 8px;
+    }
+    
+    .filter-button {
+        padding: 4px 8px;
+        font-size: 11px;
+        border-radius: 15px;
+    }
+    
+    #reset-filters {
+        padding: 6px 10px;
+        font-size: 11px;
     }
 }
 
